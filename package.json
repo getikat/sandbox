@@ -1,0 +1,33 @@
+{
+  "name": "ikat-sandbox",
+  "version": "0.1.0",
+  "private": true,
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "description": "Ikat's free web app: your accounts, net worth, transactions, spending, budgets and bills, on your own machine.",
+  "type": "module",
+  "workspaces": [
+    "core",
+    "server",
+    "web"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "concurrently -n server,web -c cyan,magenta \"npm run dev -w server\" \"npm run dev -w web\"",
+    "build": "npm run build -w web && npm run build -w server",
+    "start": "node server/dist/index.js",
+    "test": "vitest run",
+    "typecheck": "tsc -p core --noEmit && tsc -p server --noEmit && tsc -p web --noEmit",
+    "db:generate": "npm run db:generate -w server",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "concurrently": "^10.0.5",
+    "prettier": "3.9.10",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1"
+  }
+}
