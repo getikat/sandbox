@@ -1,0 +1,1 @@
+ALTER TABLE `accounts` ADD `duplicate_of` text;
